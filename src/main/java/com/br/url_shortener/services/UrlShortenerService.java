@@ -24,12 +24,9 @@ public class UrlShortenerService {
         String urlSha = generateSha();
 
         // search for sha, while sha is equal generate another
-
         while (repository.findByUrlSha(urlSha).isPresent()) {
             urlSha = generateSha();
         }
-
-        // TODO search if fullUrl is already present in db
 
         Url url = new Url();
         url.setOriginalUrl(request.url());
@@ -42,16 +39,13 @@ public class UrlShortenerService {
 
     private String generateSha() {
         try {
-            // Gerar 32 bytes aleatórios
             SecureRandom secureRandom = new SecureRandom();
             byte[] randomBytes = new byte[32]; // 256 bits = 32 bytes
             secureRandom.nextBytes(randomBytes);
 
-            // Calcular o SHA-256 do valor aleatório
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(randomBytes);
 
-            // Converter para uma string base64
             return Base64.getEncoder().encodeToString(hashBytes).substring(0, 5);
         } catch (NoSuchAlgorithmException e) {
             System.out.println("Erro ao gerar o hash: " + e.getMessage());

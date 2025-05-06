@@ -18,12 +18,6 @@ public class UrlShortenerController {
         this.service = service;
     }
 
-    @GetMapping("/teste")
-    ResponseEntity<String> teste() {
-        return ResponseEntity.ok().build();
-    }
-
-    // TODO nome mais descritivo
     @PostMapping("/short")
     ResponseEntity<String> shortUrl(@RequestBody UrlShortenerRequest request) {
 
@@ -32,7 +26,7 @@ public class UrlShortenerController {
         return ResponseEntity.ok(res);
     }
 
-    @GetMapping("/a/{sha}")
+    @GetMapping("/{sha}")
     ResponseEntity<String> redirectToFullUrl(@PathVariable String sha) {
 
         String fullUrl = service.getUrlFromSha(sha);
