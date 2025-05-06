@@ -8,8 +8,16 @@ public class Url {
 
     @Id
     private String originalUrl;
-
     private String urlSha;
+
+    public Url() {
+
+    }
+
+    public Url(String originalUrl, String urlSha) {
+        this.originalUrl = originalUrl;
+        this.urlSha = urlSha;
+    }
 
     public String getOriginalUrl() {
         return originalUrl;
