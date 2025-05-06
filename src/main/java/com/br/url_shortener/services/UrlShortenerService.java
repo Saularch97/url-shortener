@@ -2,6 +2,8 @@ package com.br.url_shortener.services;
 
 import com.br.url_shortener.model.entities.Url;
 import com.br.url_shortener.model.request.UrlShortenerRequest;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.br.url_shortener.repositories.UrlShortenerRepository;
 
@@ -14,7 +16,9 @@ import java.util.Base64;
 public class UrlShortenerService {
 
     private final UrlShortenerRepository repository;
-
+    
+    @Value("${app.base-url}")
+    private String baseUrl;
 
     public UrlShortenerService(UrlShortenerRepository repository) {
         this.repository = repository;
@@ -34,7 +38,7 @@ public class UrlShortenerService {
 
         repository.save(url);
 
-        return "http://localhost:8080/xxx.com/" + urlSha;
+        return baseUrl + "/" + urlSha;
     }
 
     private String generateSha() {

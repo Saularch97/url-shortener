@@ -10,7 +10,6 @@ import com.br.url_shortener.services.UrlShortenerService;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/xxx.com")
 public class UrlShortenerController {
 
     private final UrlShortenerService service;

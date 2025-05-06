@@ -4,11 +4,14 @@ import com.br.url_shortener.model.entities.Url;
 import com.br.url_shortener.model.request.UrlShortenerRequest;
 import com.br.url_shortener.repositories.UrlShortenerRepository;
 import com.br.url_shortener.services.UrlShortenerService;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Optional;
 
@@ -24,6 +27,11 @@ class UrlShortenerServiceTest {
 
     @InjectMocks
     private UrlShortenerService service;
+    
+    @BeforeEach
+    void setUp() {
+        ReflectionTestUtils.setField(service, "baseUrl", "https://url-shortener-oun3.onrender.com");
+    }
 
     @Test
     void shortenUrl_ShouldGenerateUniqueShaAndSaveUrl() {
@@ -38,7 +46,7 @@ class UrlShortenerServiceTest {
 
         // Assert
         assertNotNull(shortenedUrl);
-        assertTrue(shortenedUrl.startsWith("http://localhost:8080/xxx.com/"));
+        assertTrue(shortenedUrl.startsWith("https://url-shortener-oun3.onrender.com"));
         verify(repository, times(1)).save(any(Url.class)); // Verify if save was called
     }
 

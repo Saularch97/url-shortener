@@ -72,10 +72,12 @@ A simple URL shortening service built with Java and Spring Boot. This applicatio
 🧪  **Run unit tests**
 
    ```bash
-   ./gradlew bootRun
+   ./gradlew test
    ```
 
 ## API Endpoints
+
+## API base url: https://url-shortener-oun3.onrender.com
 
 ### Shorten a URL
 
@@ -89,7 +91,7 @@ A simple URL shortening service built with Java and Spring Boot. This applicatio
 - **Response:**
   ```json
   {
-    "shortCode": "http://localhost:8080/xxx.com/INFRl"
+    "shortCode": "https://url-shortener-oun3.onrender.com/INFRl"
   }
   ```
 
